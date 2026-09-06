@@ -1,0 +1,20 @@
+{
+  "name": "Reproductor de Música",
+  "short_name": "Music",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#39ff14",
+  "icons": [
+    {
+      "src": "icon2_512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icon2_512.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
