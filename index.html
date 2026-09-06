@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reproductor de Música</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- FontAwesome CDN confiable para los iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- LIBRERÍA MUSIC-METADATA-BROWSER (CRUCIAL) -->
+    <script src="https://cdn.jsdelivr.net/npm/music-metadata-browser@2.5.10/dist/index.umd.min.js"></script>
+</head>
+<body>
+    <div class="contenedor-reproductor">
+        
+        <!-- Buscador -->
+        <div class="contenedor-buscador">
+            <input type="text" id="buscador" placeholder="Buscar canción en la lista...">
+            <ul id="lista-resultados" class="lista-resultados oculto"></ul>
+        </div>
+
+        <!-- Carátula de la canción PRINCIPAL -->
+        <div class="caratula-cancion">
+            <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=500&q=80" id="imagen-caratula" alt="Carátula de música">
+        </div>
+
+        <!-- Detalles de la canción -->
+        <div class="reproductor-de-musica">
+            <h1 id="titulo-cancion">Nombre de la Canción</h1>
+            <p id="artista-cancion">Nombre del Artista</p>
+            <span id="contador">Canción 0 de 0</span>
+
+            <!-- Tiempos ordenados sobre la barra -->
+            <div class="tiempos">
+                <span id="tiempo-actual">0:00</span>
+                <span id="tiempo-total">0:00</span>
+            </div>
+
+            <!-- Barra de progreso -->
+            <input type="range" value="0" id="progreso">
+
+            <!-- Fila de controles ORIGINALES -->
+            <div class="controles">
+                <button id="btn-aleatorio" title="Modo aleatorio">
+                    <i class="fa-solid fa-shuffle"></i>
+                </button>
+                
+                <button id="btn-anterior" title="Anterior">
+                    <i class="fa-solid fa-backward-step"></i>
+                </button>
+                
+                <button id="btn-reproducir" class="boton-reproducir-pausar" title="Reproducir/Pausar">
+                    <i class="fa-solid fa-play" id="icono-ctrl"></i>
+                </button>
+                
+                <button id="btn-siguiente" title="Siguiente">
+                    <i class="fa-solid fa-forward-step"></i>
+                </button>
+                
+                <button id="btn-repetir" title="Repetir">
+                    <i class="fa-solid fa-repeat"></i>
+                </button>
+            </div>
+            
+            <!-- NUEVA LISTA DE REPRODUCCIÓN GENERADA (Aquí aparecerán) -->
+            <ul id="lista-canciones" class="lista-canciones">
+                <!-- Se generará dinámicamente -->
+            </ul>
+
+            <!-- Sección Inferior (Volumen, Temporizador y Cargar) -->
+            <div class="seccion-inferior">
+                <div class="contenedor-volumen">
+                    <i class="fa-solid fa-volume-high" id="icono-volumen"></i>
+                    <input type="range" id="volumen" min="0" max="1" step="0.01" value="1">
+                </div>
+                
+                <button id="btn-temporizador" class="boton-secundario" title="Temporizador de apagado">
+                    <i class="fa-solid fa-stopwatch"></i> <span id="texto-temporizador">Temporizador</span>
+                </button>
+
+                <label for="cargar-carpeta" class="label-cargar">
+                    <i class="fa-solid fa-folder-open"></i> Carpeta
+                </label>
+                <input type="file" id="cargar-carpeta" webkitdirectory directory multiple accept="audio/*">
+            </div>
+        </div>
+
+        <audio id="cancion"></audio>
+
+        <!-- Modal del Temporizador Neón -->
+        <div id="modal-temporizador" class="modal oculto">
+            <div class="contenido-modal">
+                <h2>Temporizador de apagado</h2>
+                
+                <label for="minutos-temporizador">Duración (minutos):</label>
+                <input type="number" id="minutos-temporizador" min="1" max="180" value="15">
+
+                <div class="opciones-apaguado">
+                    <label>
+                        <input type="radio" name="modo-apaguado" value="inmediato" checked>
+                        Pausar al terminar el tiempo
+                    </label>
+                    <label>
+                        <input type="radio" name="modo-apaguado" value="al_finalizar">
+                        Pausar al terminar la canción
+                    </label>
+                </div>
+
+                <div class="acciones-modal">
+                    <button id="btn-cancelar-modal" class="btn-cancelar">Cancelar</button>
+                    <button id="btn-iniciar-temporizador" class="btn-guardar">Iniciar</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

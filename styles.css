@@ -1,0 +1,523 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #0d0d0d;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Tarjeta principal */
+.contenedor-reproductor {
+    background: linear-gradient(145deg, #181818, #242424);
+    padding: 25px;
+    border-radius: 25px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+    width: 100%;
+    max-width: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Buscador */
+.contenedor-buscador {
+    width: 100%;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.contenedor-buscador input {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    background-color: #2b2b2b;
+    color: #ffffff;
+    font-size: 0.85rem;
+}
+
+.lista-resultados {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    width: 100%;
+    background-color: #222222;
+    border-radius: 10px;
+    max-height: 140px;
+    overflow-y: auto;
+    z-index: 10;
+    list-style: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.lista-resultados li {
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    border-bottom: 1px solid #333;
+}
+
+.lista-resultados li:hover {
+    background-color: #333333;
+}
+
+.lista-resultados.oculto {
+    display: none;
+}
+
+/* Carátula PRINCIPAL */
+.caratula-cancion {
+    width: 190px;
+    height: 190px;
+    margin: 10px 0 15px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.caratula-cancion img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Detalles de canción */
+.reproductor-de-musica {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+}
+
+.reproductor-de-musica h1 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-top: 5px;
+    color: #ffffff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 280px;
+}
+
+.reproductor-de-musica p {
+    font-size: 0.82rem;
+    color: #b3b3b3;
+    margin-top: 2px;
+}
+
+#contador {
+    font-size: 0.72rem;
+    color: #1db954;
+    margin-top: 4px;
+    font-weight: 500;
+}
+
+/* Tiempos de reproducción */
+.tiempos {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 0.75rem;
+    color: #b3b3b3;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+/* Barra de progreso */
+#progreso {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 5px;
+    background: #3a3a3a;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none;
+    margin-bottom: 15px;
+}
+
+#progreso::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #1db954;
+    cursor: pointer;
+    box-shadow: 0 0 10px #1db954;
+}
+
+/* Controles */
+.controles {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 10px;
+    margin-bottom: 20px;
+}
+
+.controles button {
+    background: #282828;
+    border: none;
+    color: #b3b3b3;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.controles button:hover {
+    color: #ffffff;
+    background: #333333;
+    transform: translateY(-2px);
+}
+
+.controles button.boton-reproducir-pausar {
+    background-color: #1db954;
+    color: #ffffff;
+    width: 52px;
+    height: 52px;
+    font-size: 1.4rem;
+    box-shadow: 0 6px 18px rgba(29, 185, 84, 0.5);
+}
+
+.controles button.boton-reproducir-pausar:hover {
+    background-color: #1ed760;
+    transform: scale(1.08);
+}
+
+.controles button.activo {
+    color: #1db954;
+    box-shadow: 0 0 10px rgba(29, 185, 84, 0.3);
+}
+
+/* Sección Inferior */
+.seccion-inferior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 15px;
+    padding-top: 12px;
+    border-top: 1px solid #2a2a2a;
+}
+
+.contenedor-volumen {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.contenedor-volumen i {
+    font-size: 1rem;
+    color: #b3b3b3;
+}
+
+#volumen {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 60px;
+    height: 4px;
+    background: #3a3a3a;
+    border-radius: 2px;
+    cursor: pointer;
+    outline: none;
+}
+
+#volumen::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ffffff;
+}
+
+.boton-secundario, .label-cargar {
+    background-color: #282828;
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    color: #b3b3b3;
+    transition: background 0.2s, color 0.2s;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.boton-secundario:hover, .label-cargar:hover {
+    background-color: #333;
+    color: #ffffff;
+}
+
+.boton-secundario.activo {
+    color: #1db954;
+    background-color: #1d3324;
+}
+
+#cargar-carpeta {
+    display: none;
+}
+
+/* NUEVA LISTA DE REPRODUCCIÓN GENERADA (Neón) */
+.lista-canciones {
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+    margin-top: 10px;
+    padding-right: 5px;
+    list-style: none;
+}
+
+.lista-canciones li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+.lista-canciones li:hover {
+    background-color: #2b2b2b;
+}
+
+.lista-canciones li.active {
+    background-color: #1d3324;
+    border-bottom: 1px solid #1db954;
+}
+
+.lista-canciones .miniatura {
+    width: 45px;
+    height: 45px;
+    border-radius: 8px;
+    background: #0d0d0d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.lista-canciones li.active .miniatura {
+    box-shadow: 0 0 10px rgba(29, 185, 84, 0.5);
+}
+
+.lista-canciones .miniatura img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.lista-canciones .info-cancion-lista {
+    flex: 1;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.lista-canciones .info-cancion-lista .titulo {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.lista-canciones li.active .info-cancion-lista .titulo {
+    color: #1db954;
+}
+
+.lista-canciones .info-cancion-lista .artista {
+    font-size: 0.72rem;
+    color: #b3b3b3;
+    margin-top: 2px;
+}
+
+/* Modal del Temporizador Neón */
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(4px);
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.modal.oculto {
+    display: none;
+}
+
+.contenido-modal {
+    background: #222222;
+    padding: 20px;
+    border-radius: 18px;
+    width: 88%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    text-align: left;
+    border: 1px solid #333;
+}
+
+.contenido-modal h2 {
+    font-size: 1rem;
+    margin-bottom: 12px;
+    color: #1db954;
+}
+
+.contenido-modal label {
+    font-size: 0.78rem;
+    color: #cccccc;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.contenido-modal input[type="number"] {
+    width: 100%;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #444;
+    background: #181818;
+    color: #fff;
+    margin-bottom: 15px;
+    outline: none;
+}
+
+.opciones-apaguado {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+
+.opciones-apaguado label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.73rem;
+    cursor: pointer;
+}
+
+.acciones-modal {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.acciones-modal button {
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: none;
+    font-size: 0.75rem;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.btn-cancelar {
+    background: #333;
+    color: #ccc;
+}
+
+.btn-guardar {
+    background: #1db954;
+    color: #fff;
+}
+.lista-canciones::-webkit-scrollbar,
+.lista-resultados::-webkit-scrollbar {
+    width: 6px;
+}
+
+.lista-canciones::-webkit-scrollbar-track,
+.lista-resultados::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.lista-canciones::-webkit-scrollbar-thumb,
+.lista-resultados::-webkit-scrollbar-thumb {
+    background: #333333;
+    border-radius: 10px;
+    transition: background 0.2s ease;
+}
+
+.lista-canciones::-webkit-scrollbar-thumb:hover,
+.lista-resultados::-webkit-scrollbar-thumb:hover {
+    background: #1db954; /* Se vuelve verde neón al pasar el cursor */
+}
+
+/* Soporte para Firefox */
+.lista-canciones,
+.lista-resultados {
+    scrollbar-width: thin;
+    scrollbar-color: #333333 rgba(0, 0, 0, 0.2);
+}
+/* Contenedor de luces ambientales alrededor del reproductor */
+.contenedor-reproductor {
+    /* ... (mantén todas tus propiedades anteriores y agrega estas) ... */
+    overflow: visible; /* Permite que el brillo salga del contenedor */
+}
+
+/* Efecto de luces dinámicas a los lados */
+.contenedor-reproductor::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    background: linear-gradient(45deg, #1db954, #1ed760, #0d0d0d, #1db954);
+    border-radius: 28px;
+    z-index: -1;
+    filter: blur(15px);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Cuando está reproduciendo, las luces se encienden y pulsan suavemente */
+.contenedor-reproductor.reproduciendo::before {
+    opacity: 0.6;
+    animation: pulsarLuz 4s infinite alternate ease-in-out;
+}
+
+@keyframes pulsarLuz {
+    0% {
+        filter: blur(12px);
+        opacity: 0.4;
+    }
+    50% {
+        filter: blur(20px);
+        opacity: 0.7;
+    }
+    100% {
+        filter: blur(12px);
+        opacity: 0.4;
+    }
+}
