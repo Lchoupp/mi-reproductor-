@@ -1,0 +1,15 @@
+{
+  "name": "Mi Reproductor",
+  "short_name": "Reproductor",
+  "icons": [
+    {
+      "src": "icon2_512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#39ff14"
+}
